@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    string findLargest(vector<int> &arr) {
+        // code here
+        vector<string>ans;
+        for(int i:arr)
+        {
+           ans.push_back(to_string(i));
+        }
+        sort(ans.begin(),ans.end(),[](string &a,string &b)
+        {
+            return a+b>b+a;
+        });
+        if(ans[0]=="0")
+        return "0";
+        string result="";
+        for(string i:ans)
+        {
+            result+=i;
+        }
+        return result;
+        
+    }
+};
