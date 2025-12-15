@@ -1,0 +1,40 @@
+class Solution {
+  public:
+    double medianOf2(vector<int>& a, vector<int>& b) {
+        // code here
+        vector<double>arr;
+        int i=0;
+        int j=0;
+        while(i<a.size() && j<b.size())
+        {
+            if(a[i]<=b[j])
+            {
+                arr.push_back(a[i]);
+                i++;
+            }
+            else{
+                arr.push_back(b[j]);
+                j++;
+            }
+            
+        }
+      while(i<a.size())
+      {
+          arr.push_back(a[i]);
+          i++;
+      }
+      while(j<b.size())
+      {
+          arr.push_back(b[j]);
+          j++;
+      }
+      int n=arr.size();
+      int median=n/2;
+      if(n%2==1)
+      {
+          return arr[median];
+      }else{
+          return (arr[median-1]+arr[median])/2.0;
+      }
+    }
+};
