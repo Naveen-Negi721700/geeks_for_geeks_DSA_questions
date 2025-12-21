@@ -1,0 +1,45 @@
+
+class Solution {
+  public:
+    vector<vector<int>> spiralFill(int n, int m, vector<int> &arr) {
+        // code here
+        vector<vector<int>>mat(n,vector<int>(m));
+        int top=0;
+        int bottom=n-1;
+        int left=0;
+        int right=m-1;
+        int idx=0;
+        while(top<=bottom &&left <=right)
+        
+        {
+            for(int j=left;j<=right &&idx<arr.size();j++)
+            {
+                mat[top][j]=arr[idx++];
+            }
+            top++;
+            for(int i=top;i<=bottom &&idx<arr.size();i++)
+            {
+                mat[i][right]=arr[idx++];
+            }
+            right--;
+            if(top<=bottom)
+            {
+                for(int j=right;j>=left &&idx<arr.size();j--)
+            {
+                mat[bottom][j]=arr[idx++];
+            }
+            bottom--;
+            }
+            if(left<=right)
+            {
+                for(int i=bottom ;i>=top &&idx<arr.size();i--)
+            {
+                mat[i][left]=arr[idx++];
+            }
+            left++;
+            }
+        }
+        return mat;
+    }
+};
+
