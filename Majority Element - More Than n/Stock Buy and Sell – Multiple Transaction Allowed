@@ -10,7 +10,7 @@ class Solution {
         {
             if(prices[i]>prices[i-1])
             {
-               maxprofit=maxprofit+(prices[i]-prices[i-1]) ;
+               maxprofit=maxprofit+(prices[i]-prices[i-1]);
             }
             
         }
