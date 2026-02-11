@@ -1,0 +1,26 @@
+#include <unordered_map>
+#include <vector>
+using namespace std;
+
+class Solution {
+  public:
+    vector<int> intersect(vector<int>& a, vector<int>& b) {
+        unordered_map<int,int> mp;
+        vector<int> ans;
+
+        // count elements of array a
+        for(int x : a){
+            mp[x]++;
+        }
+
+        // check elements in b
+        for(int x : b){
+            if(mp[x] > 0){
+                ans.push_back(x);
+                mp[x]--;
+            }
+        }
+
+        return ans;
+    }
+};
