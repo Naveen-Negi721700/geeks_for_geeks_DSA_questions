@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    int longestUniqueSubstr(string &s) {
+        vector<int> lastIndex(256, -1);   // Store last seen index of characters
+        int maxLen = 0;
+        int start = 0;   // Left pointer of sliding window
+        
+        for(int i = 0; i < s.length(); i++) {
+            
+            // If character is already seen inside current window
+            if(lastIndex[s[i]] >= start) {
+                start = lastIndex[s[i]] + 1;
+            }
+            
+            lastIndex[s[i]] = i;  // Update last index
+            
+            maxLen = max(maxLen, i - start + 1);
+        }
+        
+        return maxLen;
+    }
+};
