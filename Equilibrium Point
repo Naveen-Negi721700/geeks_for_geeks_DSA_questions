@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    int findEquilibrium(vector<int> &arr) {
+        int totalSum = 0;
+        
+        // Step 1: Calculate total sum
+        for(int i = 0; i < arr.size(); i++) {
+            totalSum += arr[i];
+        }
+        
+        int leftSum = 0;
+        
+        // Step 2: Traverse array
+        for(int i = 0; i < arr.size(); i++) {
+            totalSum -= arr[i];  // Now totalSum becomes rightSum
+            
+            if(leftSum == totalSum) {
+                return i;  // Equilibrium index found
+            }
+            
+            leftSum += arr[i];
+        }
+        
+        return -1;  // If no equilibrium index found
+    }
+};
