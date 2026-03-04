@@ -1,0 +1,47 @@
+/*
+class Node {
+    int data;
+    Node* next;
+
+    Node(int x) {
+        data = x;
+        next = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+    Node* rotate(Node* head, int k) {
+        // code here
+        if( head==NULL || head->next==NULL||k==0)
+        {
+            return head;
+        }
+          Node*tail=head;
+          int length=1;
+          while(tail->next!=NULL)
+          {
+              tail=tail->next;
+              length++;
+          }
+          k=k%length;
+          if(k==0)
+          {
+              return head;
+          }
+          tail->next=head;
+          int jump=length-k-1;
+            Node*temp=head;
+             
+          for(int i=0;i<jump;i++)
+          {
+              temp=temp->next;
+              
+          }
+          Node*nex=temp->next;
+          temp->next=NULL;
+          return nex;
+          
+    }
+};
