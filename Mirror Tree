@@ -18,14 +18,14 @@ class Solution {
   {
       if(root==NULL)
       {
-          return ;
+          return;
       }
      Node*temp=root->left;
      root->left=root->right;
      root->right=temp;
      helper(root->right);
      helper(root->left);
-     return ;
+     return;
   }
     void mirror(Node* root) {
         // code here
