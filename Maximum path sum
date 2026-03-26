@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    int maxSum = INT_MIN;
+
+    int solve(Node* root) {
+        if (root == NULL) return 0;
+
+        int left = max(0, solve(root->left));   
+        int right = max(0, solve(root->right)); 
+
+        int currSum = left + right + root->data;
+
+
+        maxSum = max(maxSum, currSum);
+
+        return root->data + max(left, right);
+    }
+
+    int findMaxSum(Node *root) {
+        solve(root);
+        return maxSum;
+    }
+};
