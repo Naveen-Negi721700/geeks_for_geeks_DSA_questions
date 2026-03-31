@@ -1,0 +1,40 @@
+class Solution {
+  public:
+    Node* first = NULL;
+    Node* middle = NULL;
+    Node* last = NULL;
+    Node* prev = NULL;
+
+    void inorder(Node* root) {
+        if (!root) return;
+
+        inorder(root->left);
+
+        // Violation condition
+        if (prev && root->data < prev->data) {
+            if (!first) {
+                // First violation
+                first = prev;
+                middle = root;
+            } else {
+                // Second violation
+                last = root;
+            }
+        }
+
+        prev = root;
+
+        inorder(root->right);
+    }
+
+    void correctBST(Node* root) {
+        inorder(root);
+
+        // Fix the swapped nodes
+        if (first && last) {
+            swap(first->data, last->data);
+        } else if (first && middle) {
+            swap(first->data, middle->data);
+        }
+    }
+};
