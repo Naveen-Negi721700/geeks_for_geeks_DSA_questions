@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    vector<int> nextLargerElement(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> result(n, -1);  // default -1
+        stack<int> st;  // store indices
+
+        for (int i = 0; i < n; i++) {
+            // check if current element is greater than stack top
+            while (!st.empty() && arr[i] > arr[st.top()]) {
+                result[st.top()] = arr[i];
+                st.pop();
+            }
+            st.push(i);
+        }
+        
+        return result;
+    }
+};
