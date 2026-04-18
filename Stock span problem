@@ -17,7 +17,8 @@ class Solution {
             } else {
                 span[i] = i - st.top();
             }
-            
+            Histogram Max Rectangular Area
+
             // Push current index
             st.push(i);
         }
