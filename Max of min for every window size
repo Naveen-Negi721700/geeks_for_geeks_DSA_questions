@@ -1,0 +1,49 @@
+class Solution {
+  public:
+    vector<int> maxOfMins(vector<int>& arr) {
+        int n = arr.size();
+        
+        vector<int> left(n), right(n);
+        stack<int> st;
+        
+        // Previous Smaller Element
+        for(int i = 0; i < n; i++) {
+            while(!st.empty() && arr[st.top()] >= arr[i]) {
+                st.pop();
+            }
+            left[i] = st.empty() ? -1 : st.top();
+            st.push(i);
+        }
+        
+        // Clear stack
+        while(!st.empty()) st.pop();
+        
+        // Next Smaller Element
+        for(int i = n - 1; i >= 0; i--) {
+            while(!st.empty() && arr[st.top()] >= arr[i]) {
+                st.pop();
+            }
+            right[i] = st.empty() ? n : st.top();
+            st.push(i);
+        }
+        
+        // Result array
+        vector<int> ans(n + 1, 0);
+        
+        // Fill result
+        for(int i = 0; i < n; i++) {
+            int len = right[i] - left[i] - 1;
+            ans[len] = max(ans[len], arr[i]);
+        }
+        
+        // Fill remaining values
+        for(int i = n - 1; i >= 1; i--) {
+            ans[i] = max(ans[i], ans[i + 1]);
+        }
+        
+        // Remove index 0
+        ans.erase(ans.begin());
+        
+        return ans;
+    }
+};
